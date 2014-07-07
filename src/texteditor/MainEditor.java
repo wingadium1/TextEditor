@@ -30,53 +30,95 @@ public class MainEditor extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        File = new javax.swing.JMenu();
         newMenuItem = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         saveAsMenuItem = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        quitMenuItem = new javax.swing.JMenuItem();
+        Edit = new javax.swing.JMenu();
+        Undo = new javax.swing.JMenuItem();
+        Redo = new javax.swing.JMenuItem();
+        Cut = new javax.swing.JMenuItem();
+        Copy = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("File");
+        File.setMnemonic('F');
+        File.setText("File");
 
         newMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newMenuItem.setMnemonic('N');
         newMenuItem.setText("New");
-        jMenu1.add(newMenuItem);
+        File.add(newMenuItem);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setMnemonic('O');
         jMenuItem2.setText("Open");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        File.add(jMenuItem2);
 
         saveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        saveMenuItem.setMnemonic('S');
         saveMenuItem.setText("Save");
         saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(saveMenuItem);
+        File.add(saveMenuItem);
 
         saveAsMenuItem.setText("Save As");
-        jMenu1.add(saveAsMenuItem);
+        File.add(saveAsMenuItem);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Exit");
-        jMenu1.add(jMenuItem3);
+        quitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        quitMenuItem.setMnemonic('Q');
+        quitMenuItem.setText("Quit");
+        quitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitMenuItemActionPerformed(evt);
+            }
+        });
+        File.add(quitMenuItem);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(File);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        Edit.setMnemonic('E');
+        Edit.setText("Edit");
+
+        Undo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        Undo.setText("Undo");
+        Undo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UndoActionPerformed(evt);
+            }
+        });
+        Edit.add(Undo);
+
+        Redo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        Redo.setText("Redo");
+        Edit.add(Redo);
+
+        Cut.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        Cut.setText("Cut");
+        Edit.add(Cut);
+
+        Copy.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        Copy.setText("Copy");
+        Copy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CopyActionPerformed(evt);
+            }
+        });
+        Edit.add(Copy);
+
+        jMenuBar1.add(Edit);
 
         setJMenuBar(jMenuBar1);
 
@@ -101,6 +143,18 @@ public class MainEditor extends javax.swing.JFrame {
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_saveMenuItemActionPerformed
+
+    private void quitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quitMenuItemActionPerformed
+
+    private void UndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UndoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UndoActionPerformed
+
+    private void CopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CopyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,13 +192,17 @@ public class MainEditor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem Copy;
+    private javax.swing.JMenuItem Cut;
+    private javax.swing.JMenu Edit;
+    private javax.swing.JMenu File;
+    private javax.swing.JMenuItem Redo;
+    private javax.swing.JMenuItem Undo;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem newMenuItem;
+    private javax.swing.JMenuItem quitMenuItem;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
