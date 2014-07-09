@@ -20,14 +20,23 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+N"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/texteditor/new_page.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="78"/>
                 <Property name="text" type="java.lang.String" value="New"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+O"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/texteditor/open.png"/>
                 </Property>
                 <Property name="mnemonic" type="int" value="79"/>
                 <Property name="text" type="java.lang.String" value="Open"/>
@@ -41,6 +50,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+S"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/texteditor/save.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="83"/>
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
@@ -52,6 +64,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save As"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveAsMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="quitMenuItem">
               <Properties>
@@ -78,6 +93,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Z"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/texteditor/undo.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Undo"/>
               </Properties>
               <Events>
@@ -89,6 +107,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Y"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/texteditor/redo.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Redo"/>
               </Properties>
             </MenuItem>
@@ -96,6 +117,9 @@
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Z"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/texteditor/cut.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cut"/>
               </Properties>
@@ -105,10 +129,49 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+C"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/texteditor/copy.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Copy"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CopyActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Paste">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+V"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/texteditor/paste.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Paste"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Delete">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="DELETE"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/texteditor/delete.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Delete"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Select_all">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+A"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Select all"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Select_allActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -139,13 +202,385 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="600" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="ControlPanel" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="539" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="ControlPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="417" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="ControlPanel">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="Open" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="New" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="Save" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btn_undo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btn_redo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="cb_font" pref="217" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="cb_size" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="cb_color" min="-2" pref="87" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="Bold" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="Italics" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="Underline" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Open" max="32767" attributes="0"/>
+                              <Component id="Save" max="32767" attributes="0"/>
+                              <Component id="New" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="cb_size" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_color" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cb_font" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_undo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_redo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="Italics" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="Underline" min="-2" max="-2" attributes="0"/>
+                      <Component id="Bold" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="Save">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/texteditor/save.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SaveActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="New">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/texteditor/new_page.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="Open">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/texteditor/open.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OpenActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cb_font">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="150">
+                <StringItem index="0" value="Aharoni"/>
+                <StringItem index="1" value="Andalus"/>
+                <StringItem index="2" value="Angsana New"/>
+                <StringItem index="3" value="AngsanaUPC"/>
+                <StringItem index="4" value="Aparajita"/>
+                <StringItem index="5" value="Arabic Typesetting"/>
+                <StringItem index="6" value="Arial"/>
+                <StringItem index="7" value="Arial Black"/>
+                <StringItem index="8" value="Arial Narrow"/>
+                <StringItem index="9" value="Arial Unicode MS"/>
+                <StringItem index="10" value="Batang"/>
+                <StringItem index="11" value="BatangChe"/>
+                <StringItem index="12" value="Book Antiqua"/>
+                <StringItem index="13" value="Bookman Old Style"/>
+                <StringItem index="14" value="Bookshelf Symbol 7"/>
+                <StringItem index="15" value="Browallia New"/>
+                <StringItem index="16" value="BrowalliaUPC"/>
+                <StringItem index="17" value="Calibri"/>
+                <StringItem index="18" value="Cambria"/>
+                <StringItem index="19" value="Cambria Math"/>
+                <StringItem index="20" value="Candara"/>
+                <StringItem index="21" value="Century"/>
+                <StringItem index="22" value="Century Gothic"/>
+                <StringItem index="23" value="Comic Sans MS"/>
+                <StringItem index="24" value="Consolas"/>
+                <StringItem index="25" value="Constantia"/>
+                <StringItem index="26" value="Corbel"/>
+                <StringItem index="27" value="Cordia New"/>
+                <StringItem index="28" value="CordiaUPC"/>
+                <StringItem index="29" value="Courier New"/>
+                <StringItem index="30" value="DaunPenh"/>
+                <StringItem index="31" value="David"/>
+                <StringItem index="32" value="DFKai-SB"/>
+                <StringItem index="33" value="Dialog"/>
+                <StringItem index="34" value="DialogInput"/>
+                <StringItem index="35" value="DilleniaUPC"/>
+                <StringItem index="36" value="DokChampa"/>
+                <StringItem index="37" value="Dotum"/>
+                <StringItem index="38" value="DotumChe"/>
+                <StringItem index="39" value="Ebrima"/>
+                <StringItem index="40" value="Estrangelo Edessa"/>
+                <StringItem index="41" value="EucrosiaUPC"/>
+                <StringItem index="42" value="Euphemia"/>
+                <StringItem index="43" value="FangSong"/>
+                <StringItem index="44" value="Franklin Gothic Medium"/>
+                <StringItem index="45" value="FrankRuehl"/>
+                <StringItem index="46" value="FreesiaUPC"/>
+                <StringItem index="47" value="Gabriola"/>
+                <StringItem index="48" value="Garamond"/>
+                <StringItem index="49" value="Gautami"/>
+                <StringItem index="50" value="Georgia"/>
+                <StringItem index="51" value="Gisha"/>
+                <StringItem index="52" value="Gulim"/>
+                <StringItem index="53" value="GulimChe"/>
+                <StringItem index="54" value="Gungsuh"/>
+                <StringItem index="55" value="GungsuhChe"/>
+                <StringItem index="56" value="Impact"/>
+                <StringItem index="57" value="IrisUPC"/>
+                <StringItem index="58" value="Iskoola Pota"/>
+                <StringItem index="59" value="JasmineUPC"/>
+                <StringItem index="60" value="KaiTi"/>
+                <StringItem index="61" value="Kalinga"/>
+                <StringItem index="62" value="Kartika"/>
+                <StringItem index="63" value="Khmer UI"/>
+                <StringItem index="64" value="KodchiangUPC"/>
+                <StringItem index="65" value="Kokila"/>
+                <StringItem index="66" value="Lao UI"/>
+                <StringItem index="67" value="Latha"/>
+                <StringItem index="68" value="Leelawadee"/>
+                <StringItem index="69" value="Levenim MT"/>
+                <StringItem index="70" value="LilyUPC"/>
+                <StringItem index="71" value="Lucida Bright"/>
+                <StringItem index="72" value="Lucida Console"/>
+                <StringItem index="73" value="Lucida Sans"/>
+                <StringItem index="74" value="Lucida Sans Typewriter"/>
+                <StringItem index="75" value="Lucida Sans Unicode"/>
+                <StringItem index="76" value="Malgun Gothic"/>
+                <StringItem index="77" value="Mangal"/>
+                <StringItem index="78" value="Marlett"/>
+                <StringItem index="79" value="Meiryo"/>
+                <StringItem index="80" value="Meiryo UI"/>
+                <StringItem index="81" value="Microsoft Himalaya"/>
+                <StringItem index="82" value="Microsoft JhengHei"/>
+                <StringItem index="83" value="Microsoft New Tai Lue"/>
+                <StringItem index="84" value="Microsoft PhagsPa"/>
+                <StringItem index="85" value="Microsoft Sans Serif"/>
+                <StringItem index="86" value="Microsoft Tai Le"/>
+                <StringItem index="87" value="Microsoft Uighur"/>
+                <StringItem index="88" value="Microsoft YaHei"/>
+                <StringItem index="89" value="Microsoft Yi Baiti"/>
+                <StringItem index="90" value="MingLiU"/>
+                <StringItem index="91" value="MingLiU-ExtB"/>
+                <StringItem index="92" value="MingLiU_HKSCS"/>
+                <StringItem index="93" value="MingLiU_HKSCS-ExtB"/>
+                <StringItem index="94" value="Miriam"/>
+                <StringItem index="95" value="Miriam Fixed"/>
+                <StringItem index="96" value="Mongolian Baiti"/>
+                <StringItem index="97" value="Monospaced"/>
+                <StringItem index="98" value="Monotype Corsiva"/>
+                <StringItem index="99" value="MoolBoran"/>
+                <StringItem index="100" value="MS Gothic"/>
+                <StringItem index="101" value="MS Mincho"/>
+                <StringItem index="102" value="MS PGothic"/>
+                <StringItem index="103" value="MS PMincho"/>
+                <StringItem index="104" value="MS Reference Sans Serif"/>
+                <StringItem index="105" value="MS Reference Specialty"/>
+                <StringItem index="106" value="MS UI Gothic"/>
+                <StringItem index="107" value="MT Extra"/>
+                <StringItem index="108" value="MV Boli"/>
+                <StringItem index="109" value="Narkisim"/>
+                <StringItem index="110" value="NSimSun"/>
+                <StringItem index="111" value="Nyala"/>
+                <StringItem index="112" value="Palatino Linotype"/>
+                <StringItem index="113" value="Plantagenet Cherokee"/>
+                <StringItem index="114" value="PMingLiU"/>
+                <StringItem index="115" value="PMingLiU-ExtB"/>
+                <StringItem index="116" value="Raavi"/>
+                <StringItem index="117" value="Rod"/>
+                <StringItem index="118" value="Sakkal Majalla"/>
+                <StringItem index="119" value="SansSerif"/>
+                <StringItem index="120" value="Segoe Print"/>
+                <StringItem index="121" value="Segoe Script"/>
+                <StringItem index="122" value="Segoe UI"/>
+                <StringItem index="123" value="Segoe UI Light"/>
+                <StringItem index="124" value="Segoe UI Semibold"/>
+                <StringItem index="125" value="Segoe UI Symbol"/>
+                <StringItem index="126" value="Serif"/>
+                <StringItem index="127" value="Shonar Bangla"/>
+                <StringItem index="128" value="Shruti"/>
+                <StringItem index="129" value="SimHei"/>
+                <StringItem index="130" value="Simplified Arabic"/>
+                <StringItem index="131" value="Simplified Arabic Fixed"/>
+                <StringItem index="132" value="SimSun"/>
+                <StringItem index="133" value="SimSun-ExtB"/>
+                <StringItem index="134" value="Sylfaen"/>
+                <StringItem index="135" value="Symbol"/>
+                <StringItem index="136" value="Tahoma"/>
+                <StringItem index="137" value="Times New Roman"/>
+                <StringItem index="138" value="Traditional Arabic"/>
+                <StringItem index="139" value="Trebuchet MS"/>
+                <StringItem index="140" value="Tunga"/>
+                <StringItem index="141" value="Utsaah"/>
+                <StringItem index="142" value="Vani"/>
+                <StringItem index="143" value="Verdana"/>
+                <StringItem index="144" value="Vijaya"/>
+                <StringItem index="145" value="Vrinda"/>
+                <StringItem index="146" value="Webdings"/>
+                <StringItem index="147" value="Wingdings"/>
+                <StringItem index="148" value="Wingdings 2"/>
+                <StringItem index="149" value="Wingdings 3"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_fontActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cb_size">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="15">
+                <StringItem index="0" value="8"/>
+                <StringItem index="1" value="9"/>
+                <StringItem index="2" value="10"/>
+                <StringItem index="3" value="11"/>
+                <StringItem index="4" value="12"/>
+                <StringItem index="5" value="14"/>
+                <StringItem index="6" value="16"/>
+                <StringItem index="7" value="18"/>
+                <StringItem index="8" value="20"/>
+                <StringItem index="9" value="24"/>
+                <StringItem index="10" value="30"/>
+                <StringItem index="11" value="36"/>
+                <StringItem index="12" value="48"/>
+                <StringItem index="13" value="54"/>
+                <StringItem index="14" value="72"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_sizeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cb_color">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="13">
+                <StringItem index="0" value="black"/>
+                <StringItem index="1" value="blue"/>
+                <StringItem index="2" value="cyan"/>
+                <StringItem index="3" value="dark gray"/>
+                <StringItem index="4" value="gray"/>
+                <StringItem index="5" value="light gray"/>
+                <StringItem index="6" value="green"/>
+                <StringItem index="7" value="orange"/>
+                <StringItem index="8" value="magenta"/>
+                <StringItem index="9" value="pink"/>
+                <StringItem index="10" value="red"/>
+                <StringItem index="11" value="yellow"/>
+                <StringItem index="12" value="white"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_colorActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="Bold">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/texteditor/bold.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BoldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="Italics">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/texteditor/italic.png"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Underline">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/texteditor/underline.png"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_undo">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/texteditor/undo.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_undoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_redo">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/texteditor/redo.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_redoActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextPane" name="jTextPane1">
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
 </Form>
