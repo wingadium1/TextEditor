@@ -6,22 +6,31 @@
 
 package texteditor;
 
+import com.aspose.words.FileFormatInfo;
+import com.aspose.words.FileFormatUtil;
+import com.aspose.words.LoadFormat;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.KeyStroke;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 import javax.swing.text.StyledEditorKit;
 import javax.swing.text.rtf.RTFEditorKit;
 import javax.swing.undo.CannotRedoException;
@@ -46,12 +55,15 @@ public class MainEditor extends javax.swing.JFrame {
             "20","24","30","36","48","54","72"};
     String[] fontColorStrings={"black","blue","cyan","dark gray","gray",
             "light gray","green","orange","magenta","pink","red","yellow","white"};
+    final String DEFAULT_FILE ="Untitled Document";
+    String filename;
+    FileFormatInfo info;
     /**
      * Creates new form MainEditor
      */
     public MainEditor() {
         initComponents();
-        jTextPane1.setEditorKit(kit);
+        
         setBIUActions();
         Undo.setAction(undoAction);
         Undo.setAccelerator(javax.swing.KeyStroke.
@@ -94,7 +106,7 @@ public class MainEditor extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         File = new javax.swing.JMenu();
         newMenuItem = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        open = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         saveAsMenuItem = new javax.swing.JMenuItem();
         quitMenuItem = new javax.swing.JMenuItem();
@@ -246,16 +258,16 @@ public class MainEditor extends javax.swing.JFrame {
         });
         File.add(newMenuItem);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor/open.png"))); // NOI18N
-        jMenuItem2.setMnemonic('O');
-        jMenuItem2.setText("Open");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        open.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        open.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor/open.png"))); // NOI18N
+        open.setMnemonic('O');
+        open.setText("Open");
+        open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                openActionPerformed(evt);
             }
         });
-        File.add(jMenuItem2);
+        File.add(open);
 
         saveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         saveMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor/save.png"))); // NOI18N
@@ -306,7 +318,7 @@ public class MainEditor extends javax.swing.JFrame {
         Redo.setText("Redo");
         Edit.add(Redo);
 
-        Cut.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        Cut.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         Cut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor/cut.png"))); // NOI18N
         Cut.setText("Cut");
         Edit.add(Cut);
@@ -374,54 +386,127 @@ public class MainEditor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void setBIUActions(){
-        javax.swing.Action boldAction=new StyledEditorKit.BoldAction();
-        Bold.setAction(boldAction);
-        ImageIcon boldic;boldic = new ImageIcon((getClass().
-                getClassLoader().getResource("texteditor/bold.png")));
-        Bold.setIcon(boldic);
-        Bold.setText(null);
-        
+        UAction();
+        IAction();
+        BAction();
+    }
+                
+    private void UAction(){   
         javax.swing.Action underlineAction=new StyledEditorKit.UnderlineAction();
-        Underline.setAction(underlineAction);
+        underlineAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control U"));
+        Underline.getActionMap().put("", underlineAction);
         ImageIcon Underlineic = new ImageIcon((getClass().
                 getClassLoader().getResource("texteditor/underline.png")));
         Underline.setIcon(Underlineic);
         Underline.setText(null);
         
-        
+        Underline.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                (KeyStroke) underlineAction.getValue(Action.ACCELERATOR_KEY), "");
+    }    
+    private void IAction(){    
         javax.swing.Action italicAction=new StyledEditorKit.ItalicAction();
-        Italics.setAction(italicAction);
-        ImageIcon italicic= new ImageIcon((getClass().getClassLoader().getResource("texteditor/italic.png")));
-        Italics.setIcon(italicic);
+        italicAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control I"));
+        Italics.getActionMap().put("", italicAction);
+        ImageIcon Italicic= new ImageIcon((getClass().getClassLoader().
+                getResource("texteditor/italic.png")));
+        Italics.setIcon(Italicic);
         Italics.setText(null);
         
+        Italics.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                (KeyStroke) italicAction.getValue(Action.ACCELERATOR_KEY), "");
+    }
+    
+    private void BAction(){
+        javax.swing.Action boldAction=new StyledEditorKit.BoldAction();
+        boldAction.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control B"));
+        Bold.getActionMap().put("", boldAction);
+        ImageIcon boldic;boldic = new ImageIcon((getClass().
+                getClassLoader().getResource("texteditor/bold.png")));
+        Bold.setIcon(boldic);
+        Bold.setText(null);
+        Bold.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                (KeyStroke) boldAction.getValue(Action.ACCELERATOR_KEY), "");
     }
     
     private void saveAs(){
-        try{
-          JFileChooser fileChooser=new JFileChooser();
-          int returnValue=fileChooser.showSaveDialog(null);
-          if(returnValue==JFileChooser.APPROVE_OPTION){
-          File file=fileChooser.getSelectedFile();
-          FileOutputStream fo=new FileOutputStream(file);
-          kit.write(fo,jTextPane1.getDocument(),0,jTextPane1.getDocument().getLength());
-          }
-      }catch(HeadlessException | IOException | BadLocationException e){System.out.println(e);}
+        JFileChooser fileChooser=new JFileChooser();
+        int returnValue=fileChooser.showSaveDialog(null);
+        if(returnValue==JFileChooser.APPROVE_OPTION){
+            try {
+                
+                File file=fileChooser.getSelectedFile();
+                FileOutputStream fo=null;
+                        fo = new FileOutputStream(file);
+                switch (info.getLoadFormat()){
+                    case (LoadFormat.RTF):
+                        
+                        kit.write(fo,jTextPane1.getDocument(),0,jTextPane1.getDocument().getLength());
+                    default:
+                        new StyledEditorKit().write(fo,jTextPane1.getDocument(),
+                                0,jTextPane1.getDocument().getLength());
+                        
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MainEditor.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException | BadLocationException ex) {
+                Logger.getLogger(MainEditor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
     }
+        
+               
+                    
+            
+                
+        
     
     private void open(){
-        try{
-            JFileChooser fileChooser = new JFileChooser();
-            int returnValue = fileChooser.showOpenDialog(null);
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-              jTextPane1.setText("");
-              java.io.File file = fileChooser.getSelectedFile();
-              FileInputStream fi=new FileInputStream(file);
-              kit.read(fi,jTextPane1.getDocument(),0);
-              this.setTitle(file.getName()+"-Rich Text Editor");
-             }
-       }
-       catch(HeadlessException | IOException | BadLocationException e){System.out.println(e);}
+        FileInputStream fi = null;
+        
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+        try {
+            jTextPane1.setText("");
+            java.io.File file = fileChooser.getSelectedFile();
+            filename = file.getPath();
+            info = FileFormatUtil.detectFileFormat(filename);
+            fi=new FileInputStream(file);
+                       
+            switch (info.getLoadFormat())
+            {
+                case LoadFormat.RTF:
+                    /*
+                    file là RTF
+                    */
+                    jTextPane1.setEditorKit(kit);
+                    kit.read(fi,jTextPane1.getDocument(),0);
+                    fi.close();
+                    this.setTitle(file.getName()+"-Rich Text Editor");
+                    break;
+                default:
+                    /*
+                        Trường hợp còn lại không phải là PTF
+                        */
+                    String s;
+                        BufferedReader reader = new BufferedReader(new FileReader(file));
+                        StyledDocument doc = jTextPane1.getStyledDocument();
+                        while ((s = reader.readLine())!=null){
+                            doc.insertString(doc.getLength(),s+"\n", null);
+                        }
+                        reader.close();
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(MainEditor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+                
+            }
+        
+        
+        
     }
     
     private void newpage(){
@@ -431,10 +516,10 @@ public class MainEditor extends javax.swing.JFrame {
         this.dispose();
     }
     
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openActionPerformed
         // TODO add your handling code here:
         open();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_openActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
         // TODO add your handling code here:
@@ -712,10 +797,10 @@ public class MainEditor extends javax.swing.JFrame {
     private javax.swing.JComboBox cb_size;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JMenuItem newMenuItem;
+    private javax.swing.JMenuItem open;
     private javax.swing.JMenuItem quitMenuItem;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
